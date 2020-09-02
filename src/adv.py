@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,38 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+playing = True
+
+player_name = input(f"Hello. Please enter your name: ")
+current_room = room["outside"]
+player = Player(player_name, current_room)
+print(f"Nice to meet you, {player.name}!")
+
+playing = True
+
+while(playing):
+    print()
+    print(f"You are now at: {player.location.name} - {player.location.description}")
+    print()
+    decision = input("Where do you want to move now? ")
+
+    try: 
+        if decision == "q":
+            playing = False
+        elif decision == "n":
+            player.location = player.location.n_to
+        elif decision == "e":
+            player.location = player.location.e_to
+        elif decision == "s":
+            player.location = player.location.s_to
+        elif decision == "w":
+            player.location = player.location.w_to
+    except AttributeError:
+        print()
+        print("Oh no! You fell out of the game!")
+        print()
+        playing = False
 
 # Write a loop that:
 #
