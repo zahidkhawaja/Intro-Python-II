@@ -4,15 +4,15 @@ from item import Item
 
 # Items in game
 
-lobster = Item("Lobster", "Delicious crustacean!")
-bottle = Item("Bottle", "It's empty!")
-flashlight = Item("Flashlight", "A useful source of light.")
-pickaxe = Item("Pickaxe", "Useful to mine ore!")
-matches = Item("Matches", "Source of fire!")
-log = Item("Log", "Just wood!")
-gold = Item("Gold", "The jackpot!")
-diamond = Item("Diamond", "Solid carbon!")
-ruby = Item("Ruby", "Progr- I mean, a beautiful gem!")
+lobster = Item("Lobster", "Delicious crustacean!", 10)
+bottle = Item("Bottle", "It's empty!", 5)
+flashlight = Item("Flashlight", "A useful source of light.", 5)
+pickaxe = Item("Pickaxe", "Useful to mine ore!", 15)
+matches = Item("Matches", "Source of fire!", 5)
+log = Item("Log", "Just wood!", 5)
+gold = Item("Gold", "The jackpot!", 50)
+diamond = Item("Diamond", "Solid carbon!", 40)
+ruby = Item("Ruby", "Progr- I mean, a beautiful gem!", 30)
 
 # Declare all the rooms
 
