@@ -51,7 +51,7 @@ playing = True
 
 while(playing):
     print()
-    print(f"You are now at: {player.location.name} - {player.location.description}")
+    print(f"- You are now at: {player.location.name} - {player.location.description} -")
     print(f"Items in this room: {player.location.contents}")
     print()
     decision = input("What do you want to do now? Enter 'h' for help! ")
@@ -75,17 +75,21 @@ while(playing):
             print("Options: n (north), e (east), s (south), w (west), i (inventory), p (pickup item), d (drop item), q (quit)")
         elif decision == "p":
             print()
+            print(f"Items in this room: {player.location.contents}")
             to_pickup = int(input("What would you like to pickup? (Enter the index) "))
             player.pickup_item(player.location.contents[to_pickup])
             print(f"Item picked up: {player.location.contents[to_pickup]}")
             player.location.contents.remove(player.location.contents[to_pickup])
+            print(f"- Your inventory now: {player.inventory} -")
         elif decision == "d":
             print()
+            print(f"Your inventory: {player.inventory}")
             to_drop = int(input("What would you like to drop? (Enter the index) "))
             player.location.contents.append(player.inventory[to_drop])
             player.drop_item(player.inventory[to_drop])
             last_index = len(player.location.contents) - 1
             print(f"Item dropped: {player.location.contents[last_index]}")
+            print(f"- Your inventory now: {player.inventory} -")
 
     except AttributeError:
         print()
