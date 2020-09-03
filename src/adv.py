@@ -83,7 +83,7 @@ while(playing):
             print(f"Your inventory: {[x.name for x in player.inventory]}")
         elif decision == "h":
             print()
-            print("Options: n (north), e (east), s (south), w (west), i (inventory), get (pickup item), drop (drop item), q (quit)")
+            print("Options: n (north), e (east), s (south), w (west), i (inventory), get (pickup item), drop (drop item), $ (calculate net worth), q (quit)")
         elif decision == "get":
             print()
             print(f"Items in this room: {[x.name for x in player.location.contents]}")
@@ -101,6 +101,9 @@ while(playing):
             last_index = len(player.location.contents) - 1
             print(f"Item dropped: {player.location.contents[last_index].name}")
             print(f"Your inventory now: {[x.name for x in player.inventory]}")
+        elif decision == "$":
+            print()
+            print(f"Your net worth is ${sum([x.value for x in player.inventory])}")
 
     except AttributeError:
         print()
