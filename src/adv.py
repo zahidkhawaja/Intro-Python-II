@@ -4,7 +4,7 @@ from item import Item
 
 # Items in game
 # Items have a name, description, and value
-# Value is used to calculate player's net worth
+# Value is used to calculate player's net worth (enter '$' in game to calculate net worth based on inventory)
 lobster = Item("Lobster", "Delicious crustacean!", 10)
 bottle = Item("Bottle", "It's empty!", 5)
 flashlight = Item("Flashlight", "A useful source of light.", 5)
