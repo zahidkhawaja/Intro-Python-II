@@ -1,5 +1,4 @@
-# Write a class to hold player information, e.g. what room they are in
-# currently.
+# Player information
 
 class Player:
     def __init__(self, name, location, inventory):
