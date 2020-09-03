@@ -44,7 +44,7 @@ playing = True
 
 player_name = input(f"Hello. Please enter your name: ")
 current_room = room["outside"]
-player = Player(player_name, current_room, ["flashlight"])
+player = Player(player_name, current_room, ["Flashlight"])
 print(f"Nice to meet you, {player.name}!")
 
 playing = True
@@ -73,6 +73,12 @@ while(playing):
         elif decision == "h":
             print()
             print("Options: n (north), e (east), s (south), w (west), i (inventory), q (quit)")
+        elif decision == "p":
+            print()
+            to_pickup = int(input("What would you like to pickup? "))
+            player.pickup_item(player.location.contents[to_pickup])
+            print(f"Item picked up: {player.location.contents[to_pickup]}")
+            player.location.contents.remove(player.location.contents[to_pickup])
     except AttributeError:
         print()
         print("Oh no! You fell out of the game!")
