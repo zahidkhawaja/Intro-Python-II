@@ -72,13 +72,21 @@ while(playing):
             print(f"Your inventory: {player.inventory}")
         elif decision == "h":
             print()
-            print("Options: n (north), e (east), s (south), w (west), i (inventory), q (quit)")
+            print("Options: n (north), e (east), s (south), w (west), i (inventory), p (pickup item), d (drop item), q (quit)")
         elif decision == "p":
             print()
             to_pickup = int(input("What would you like to pickup? (Enter the index) "))
             player.pickup_item(player.location.contents[to_pickup])
             print(f"Item picked up: {player.location.contents[to_pickup]}")
             player.location.contents.remove(player.location.contents[to_pickup])
+        elif decision == "d":
+            print()
+            to_drop = int(input("What would you like to drop? (Enter the index) "))
+            player.location.contents.append(player.inventory[to_drop])
+            player.drop_item(player.inventory[to_drop])
+            last_index = len(player.location.contents) - 1
+            print(f"Item dropped: {player.location.contents[last_index]}")
+
     except AttributeError:
         print()
         print("Oh no! You fell out of the game!")
