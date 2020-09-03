@@ -86,8 +86,8 @@ while(playing):
             print(f"Your inventory: {[x.name for x in player.inventory]}")
         elif decision == "h":
             print()
-            print("Options: n (north), e (east), s (south), w (west), i (inventory), p (pickup item), d (drop item), q (quit)")
-        elif decision == "p":
+            print("Options: n (north), e (east), s (south), w (west), i (inventory), get (pickup item), drop (drop item), q (quit)")
+        elif decision == "get":
             print()
             print(f"Items in this room: {[x.name for x in player.location.contents]}")
             to_pickup = int(input("What would you like to pickup? (Enter the index) "))
@@ -95,7 +95,7 @@ while(playing):
             print(f"Item picked up: {player.location.contents[to_pickup].name}")
             player.location.contents.remove(player.location.contents[to_pickup])
             print(f"Your inventory now: {[x.name for x in player.inventory]}")
-        elif decision == "d":
+        elif decision == "drop":
             print()
             print(f"Your inventory: {[x.name for x in player.inventory]}")
             to_drop = int(input("What would you like to drop? (Enter the index) "))
