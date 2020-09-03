@@ -75,7 +75,7 @@ while(playing):
             print("Options: n (north), e (east), s (south), w (west), i (inventory), q (quit)")
         elif decision == "p":
             print()
-            to_pickup = int(input("What would you like to pickup? "))
+            to_pickup = int(input("What would you like to pickup? (Enter the index) "))
             player.pickup_item(player.location.contents[to_pickup])
             print(f"Item picked up: {player.location.contents[to_pickup]}")
             player.location.contents.remove(player.location.contents[to_pickup])
