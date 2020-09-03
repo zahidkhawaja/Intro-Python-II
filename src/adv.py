@@ -87,17 +87,29 @@ while(playing):
         elif decision == "get":
             print()
             print(f"Items in this room: {[x.name for x in player.location.contents]}")
-            to_pickup = int(input("What would you like to pickup? (Enter the index) "))
-            player.pickup_item(player.location.contents[to_pickup])
-            print(f"Item picked up: {player.location.contents[to_pickup].name}")
-            player.location.contents.remove(player.location.contents[to_pickup])
+            to_pickup_name = input("What would you like to pickup? Enter the name exactly. ")
+            to_pickup_index = None
+
+            for x in player.location.contents:
+                if x.name == to_pickup_name:
+                    to_pickup_index = player.location.contents.index(x)
+                
+            player.pickup_item(player.location.contents[to_pickup_index])
+            print(f"Item picked up: {player.location.contents[to_pickup_index].name}")
+            player.location.contents.remove(player.location.contents[to_pickup_index])
             print(f"Your inventory now: {[x.name for x in player.inventory]}")
         elif decision == "drop":
             print()
             print(f"Your inventory: {[x.name for x in player.inventory]}")
-            to_drop = int(input("What would you like to drop? (Enter the index) "))
-            player.location.contents.append(player.inventory[to_drop])
-            player.drop_item(player.inventory[to_drop])
+            to_drop_name = input("What would you like to drop? Enter the name exactly. ")
+            to_drop_index = None
+
+            for x in player.inventory:
+                if x.name == to_drop_name:
+                    to_drop_index = player.inventory.index(x)
+
+            player.location.contents.append(player.inventory[to_drop_index])
+            player.drop_item(player.inventory[to_drop_index])
             last_index = len(player.location.contents) - 1
             print(f"Item dropped: {player.location.contents[last_index].name}")
             print(f"Your inventory now: {[x.name for x in player.inventory]}")
