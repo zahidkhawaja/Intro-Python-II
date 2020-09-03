@@ -1,25 +1,38 @@
 from room import Room
 from player import Player
+from item import Item
+
+# Items in game
+
+lobster = Item("Lobster", "Delicious crustacean!")
+bottle = Item("Bottle", "It's empty!")
+flashlight = Item("Flashlight", "A useful source of light.")
+pickaxe = Item("Pickaxe", "Useful to mine ore!")
+matches = Item("Matches", "Source of fire!")
+log = Item("Log", "Just wood!")
+gold = Item("Gold", "The jackpot!")
+diamond = Item("Diamond", "Solid carbon!")
+ruby = Item("Ruby", "Progr- I mean, a beautiful gem!")
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ["Lobster", "Bottle"]),
+                     "North of you, the cave mount beckons", [lobster, bottle]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["Lighter"]),
+passages run north and east.""", [pickaxe]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ["Log", "Binoculars"]),
+the distance, but there is no way across the chasm.""", [matches]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["Pickaxe"]),
+to north. The smell of gold permeates the air.""", [log]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ["Gold", "Ruby", "Diamond"]),
+earlier adventurers. The only exit is to the south.""", [gold, diamond, ruby]),
 }
 
 
@@ -44,7 +57,7 @@ playing = True
 
 player_name = input(f"Hello. Please enter your name: ")
 current_room = room["outside"]
-player = Player(player_name, current_room, ["Flashlight"])
+player = Player(player_name, current_room, [flashlight])
 print(f"Nice to meet you, {player.name}!")
 
 playing = True
@@ -52,7 +65,7 @@ playing = True
 while(playing):
     print()
     print(f"- You are now at: {player.location.name} - {player.location.description} -")
-    print(f"Items in this room: {player.location.contents}")
+    print(f"Items in this room: {[x.name for x in player.location.contents]}")
     print()
     decision = input("What do you want to do now? Enter 'h' for help! ")
 
@@ -69,27 +82,27 @@ while(playing):
             player.location = player.location.w_to
         elif decision == "i":
             print()
-            print(f"Your inventory: {player.inventory}")
+            print(f"Your inventory: {[x.name for x in player.inventory]}")
         elif decision == "h":
             print()
             print("Options: n (north), e (east), s (south), w (west), i (inventory), p (pickup item), d (drop item), q (quit)")
         elif decision == "p":
             print()
-            print(f"Items in this room: {player.location.contents}")
+            print(f"Items in this room: {[x.name for x in player.location.contents]}")
             to_pickup = int(input("What would you like to pickup? (Enter the index) "))
             player.pickup_item(player.location.contents[to_pickup])
-            print(f"Item picked up: {player.location.contents[to_pickup]}")
+            print(f"Item picked up: {player.location.contents[to_pickup].name}")
             player.location.contents.remove(player.location.contents[to_pickup])
-            print(f"- Your inventory now: {player.inventory} -")
+            print(f"Your inventory now: {[x.name for x in player.inventory]}")
         elif decision == "d":
             print()
-            print(f"Your inventory: {player.inventory}")
+            print(f"Your inventory: {[x.name for x in player.inventory]}")
             to_drop = int(input("What would you like to drop? (Enter the index) "))
             player.location.contents.append(player.inventory[to_drop])
             player.drop_item(player.inventory[to_drop])
             last_index = len(player.location.contents) - 1
-            print(f"Item dropped: {player.location.contents[last_index]}")
-            print(f"- Your inventory now: {player.inventory} -")
+            print(f"Item dropped: {player.location.contents[last_index].name}")
+            print(f"Your inventory now: {[x.name for x in player.inventory]}")
 
     except AttributeError:
         print()
